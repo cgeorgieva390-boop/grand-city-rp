@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRAND CITY RP — Server Rules</title>
+  <meta name="description" content="GRAND CITY RP — Server Rules">
+  <style>
+    :root{
+      --red:#ff1e1e;
+      --red2:#b40000;
+      --bg:#050505;
+      --panel:#0d0d0f;
+      --panel2:#121214;
+      --text:#f4f4f4;
+      --muted:#a7a7ad;
+      --line:rgba(255,30,30,.22);
+      --glow:0 0 30px rgba(255,0,0,.16);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(255,0,0,.18), transparent 35%),
+        linear-gradient(180deg,#030303 0%,#080808 50%,#030303 100%);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      line-height:1.65;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom,black,transparent 85%);
+    }
+    a{color:inherit;text-decoration:none}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      height:74px; display:flex; align-items:center;
+      background:rgba(4,4,5,.86); backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{width:min(1400px,94%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:2px}
+    .brand img{width:45px;height:45px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(255,0,0,.55))}
+    .brand span{font-size:16px}
+    .menu-btn{display:none;border:1px solid var(--line);background:#111;color:#fff;border-radius:10px;padding:9px 12px;cursor:pointer}
+    .layout{width:min(1400px,94%);margin:28px auto;display:grid;grid-template-columns:270px 1fr;gap:26px}
+    aside{
+      position:sticky;top:94px;height:calc(100vh - 120px);
+      background:linear-gradient(180deg,rgba(18,18,20,.94),rgba(8,8,9,.94));
+      border:1px solid var(--line);border-radius:18px;padding:18px;
+      box-shadow:var(--glow);overflow:auto;
+    }
+    .side-title{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:2px;margin:4px 10px 14px}
+    nav a{
+      display:flex;gap:10px;align-items:center;padding:9px 10px;margin:3px 0;
+      border-radius:9px;color:#bbb;font-size:14px;transition:.2s;
+    }
+    nav a:hover,nav a.active{color:#fff;background:rgba(255,0,0,.11);border-left:2px solid var(--red);padding-left:8px}
+    nav b{color:var(--red);font-size:12px;min-width:24px}
+    main{min-width:0}
+    .hero{
+      position:relative;overflow:hidden;min-height:450px;
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      border:1px solid var(--line);border-radius:22px;
+      background:
+        linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.78)),
+        url("grand_city_rp_logo.png") center/cover no-repeat;
+      box-shadow:0 0 70px rgba(255,0,0,.12);
+    }
+    .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle,transparent 15%,rgba(0,0,0,.68) 100%)}
+    .hero-content{position:relative;z-index:2;padding:60px 25px}
+    .hero-logo{width:min(430px,70vw);max-height:210px;object-fit:contain;filter:drop-shadow(0 0 25px rgba(255,0,0,.65));margin-bottom:10px}
+    .eyebrow{font-size:12px;letter-spacing:5px;color:#ff5252;font-weight:800;text-transform:uppercase}
+    .hero h1{font-size:clamp(38px,6vw,76px);margin:2px 0 5px;font-weight:1000;letter-spacing:4px;text-shadow:0 0 30px #000}
+    .hero p{margin:0 auto;max-width:680px;color:#ddd;font-size:16px}
+    .notice{
+      margin-top:18px;padding:18px 22px;border:1px solid var(--line);border-radius:15px;
+      background:linear-gradient(90deg,rgba(255,0,0,.12),rgba(255,255,255,.025));
+      box-shadow:var(--glow)
+    }
+    .rule{
+      scroll-margin-top:95px;margin-top:18px;padding:27px 28px;
+      background:linear-gradient(145deg,rgba(18,18,20,.96),rgba(9,9,10,.96));
+      border:1px solid rgba(255,255,255,.07);border-left:3px solid #4a1111;
+      border-radius:16px;transition:.22s;
+    }
+    .rule:hover{border-left-color:var(--red);box-shadow:var(--glow);transform:translateY(-1px)}
+    .rule-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+    .num{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;background:rgba(255,0,0,.1);border:1px solid var(--line);color:#ff4444;font-weight:900}
+    .rule h2{font-size:20px;margin:0;letter-spacing:.3px}
+    .rule p{margin:8px 0;color:#d3d3d7}
+    .rule ul{margin:10px 0 0;padding-left:23px;color:#c8c8cc}
+    .rule li{margin:5px 0}
+    .rule strong{color:#fff}
+    .quote{margin-top:14px;padding:13px 16px;border-left:3px solid var(--red);background:rgba(255,0,0,.055);color:#fff;font-weight:650;border-radius:0 9px 9px 0}
+    .penalty{border-color:rgba(255,0,0,.38);background:linear-gradient(145deg,rgba(45,7,7,.72),rgba(12,12,13,.96))}
+    .penalties{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+    .penalties div{padding:14px;text-align:center;border:1px solid var(--line);border-radius:12px;background:#0a0a0b}
+    footer{margin:35px 0 15px;text-align:center;color:#777;font-size:13px}
+    .search{margin:0 0 15px}
+    .search input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.09);background:#080809;color:#fff;outline:none}
+    .search input:focus{border-color:var(--red)}
+    .hidden{display:none!important}
+    @media(max-width:900px){
+      .menu-btn{display:block}
+      .layout{grid-template-columns:1fr}
+      aside{position:fixed;z-index:60;left:-310px;top:84px;width:290px;height:calc(100vh - 100px);transition:.25s}
+      aside.open{left:3%}
+      .hero{min-height:360px}
+      .penalties{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:560px){
+      .layout,.topbar-inner{width:94%}
+      .hero h1{font-size:34px;letter-spacing:2px}
+      .hero-logo{width:82vw}
+      .rule{padding:21px 18px}
+      .penalties{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top"><img src="grand_city_rp_logo.png" alt="Grand City RP"><span>GRAND CITY RP</span></a>
+    <button class="menu-btn" onclick="toggleMenu()">☰ MENU</button>
+  </div>
+</header>
+
+<div class="layout" id="top">
+  <aside id="sidebar">
+    <div class="side-title">Server Rules</div>
+    <div class="search"><input id="search" type="search" placeholder="Търси правило..."></div>
+    <nav id="nav">
+      <a href="#r1"><b>01</b> 🎭 Roleplay</a>
+      <a href="#r2"><b>02</b> 🧠 Metagaming</a>
+      <a href="#r3"><b>03</b> 💪 Powergaming</a>
+      <a href="#r4"><b>04</b> 🔫 RDM</a>
+      <a href="#r5"><b>05</b> 🚗 VDM</a>
+      <a href="#r6"><b>06</b> 😨 Fear RP</a>
+      <a href="#r7"><b>07</b> ☠️ NLR</a>
+      <a href="#r8"><b>08</b> 🚪 Combat Log</a>
+      <a href="#r9"><b>09</b> 👮 Cop Baiting</a>
+      <a href="#r10"><b>10</b> 🚑 EMS Baiting</a>
+      <a href="#r11"><b>11</b> 🧍 Value of Life</a>
+      <a href="#r12"><b>12</b> 💥 Престрелки</a>
+      <a href="#r13"><b>13</b> 🏃 Robbery / Kidnapping</a>
+      <a href="#r14"><b>14</b> 🚓 Police Roleplay</a>
+      <a href="#r15"><b>15</b> 🚑 Medical RP</a>
+      <a href="#r16"><b>16</b> 🚗 Driving RP</a>
+      <a href="#r17"><b>17</b> 🐛 Bug Abuse / Exploits</a>
+      <a href="#r18"><b>18</b> 💻 Cheats</a>
+      <a href="#r19"><b>19</b> 🎥 Stream Sniping</a>
+      <a href="#r20"><b>20</b> 👥 Third Party</a>
+      <a href="#r21"><b>21</b> 🧍 Character Rules</a>
+      <a href="#r22"><b>22</b> 🎙️ OOC</a>
+      <a href="#r23"><b>23</b> 🛡️ Staff</a>
+      <a href="#r24"><b>24</b> 📹 Clips / Доказателства</a>
+      <a href="#r25"><b>25</b> ⚖️ Common Sense</a>
+      <a href="#penalties"><b>⚠</b> Наказания</a>
+      <a href="#final"><b>👑</b> Финално правило</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Official Server Rules</div>
+        <img class="hero-logo" src="grand_city_rp_logo.png" alt="GRAND CITY RP">
+        <h1>GRAND CITY RP</h1>
+        <p>Качество • Реализъм • Roleplay</p>
+      </div>
+    </section>
+
+    <div class="notice">
+      <strong>🚨 SERVER RULES</strong><br>
+      С влизането си в сървъра приемате всички правила.<br>
+      ⚠️ <strong>Незнанието на правилата не ви освобождава от наказание.</strong><br>
+      🎭 Това е <strong>Whitelist RP сървър</strong> — очакваме качество, реализъм и адекватно поведение.
+    </div>
+
+    <section class="rule" id="r1"><div class="rule-head"><div class="num">01</div><h2>🎭 ROLEPLAY</h2></div><p>Всеки играч е длъжен да участва в ситуациите реалистично.</p><p><strong>Забранено е:</strong></p><ul><li>Разваляне на RP ситуация</li><li>Несериозно поведение по време на RP</li><li>Излизане от роля без причина</li><li>Игнориране на действията на друг играч</li><li>Превръщане на всяка ситуация в стрелба</li></ul><div class="quote">RP винаги е с приоритет пред победата.</div></section>
+
+    <section class="rule" id="r2"><div class="rule-head"><div class="num">02</div><h2>🧠 METAGAMING</h2></div><p><strong>Metagaming</strong> е използването на информация, която персонажът ви не е научил в играта.</p><p>Забранено е използването на информация от:</p><ul><li>Discord</li><li>Stream</li><li>OOC чат</li><li>Приятели извън играта</li><li>Друг персонаж</li></ul><div class="quote">❌ Получената OOC информация не може да бъде използвана IC.</div></section>
+
+    <section class="rule" id="r3"><div class="rule-head"><div class="num">03</div><h2>💪 POWERGAMING</h2></div><p>Забранено е извършването на нереалистични действия или принуждаването на друг играч към RP без шанс за реакция.</p><ul><li>Нереалистично вдигане или местене на хора</li><li>Игнориране на тежки наранявания</li><li>Продължаване на бой след сериозна катастрофа</li><li>Нереалистични действия с превозни средства</li><li>Използване на игрови механики за предимство</li></ul></section>
+
+    <section class="rule" id="r4"><div class="rule-head"><div class="num">04</div><h2>🔫 RDM</h2></div><p><strong>Random Deathmatch</strong> е нападение или убийство без достатъчна RP причина.</p><div class="quote">❌ Забранено е да стреляте или убивате играч без изградена RP ситуация. Преди използване на оръжие трябва да има ясна и логична причина.</div></section>
+
+    <section class="rule" id="r5"><div class="rule-head"><div class="num">05</div><h2>🚗 VDM</h2></div><p><strong>Vehicle Deathmatch</strong> е използването на превозно средство като оръжие без RP причина.</p><div class="quote">❌ Забранено е умишлено блъскане или убиване на играчи с автомобил.</div></section>
+
+    <section class="rule" id="r6"><div class="rule-head"><div class="num">06</div><h2>😨 FEAR RP</h2></div><p>Вашият персонаж трябва да се страхува за живота си.</p><p>При:</p><ul><li>Насочено оръжие</li><li>Отвличане</li><li>Превъзхождащ ви брой въоръжени лица</li><li>Сериозна заплаха за живота</li></ul><div class="quote">❌ Не сте безсмъртни.</div></section>
+
+    <section class="rule" id="r7"><div class="rule-head"><div class="num">07</div><h2>☠️ NLR</h2></div><p>След смърт / окончателно приключване на ситуация:</p><ul><li>Не се връщате веднага на мястото</li><li>Не търсите отмъщение</li><li>Не използвате информация, която персонажът ви вече не би следвало да помни</li></ul></section>
+
+    <section class="rule" id="r8"><div class="rule-head"><div class="num">08</div><h2>🚪 COMBAT LOG</h2></div><p>Забранено е напускането на сървъра с цел избягване на:</p><ul><li>Арест</li><li>Обир</li><li>Престрелка</li><li>Отвличане</li><li>RP ситуация</li><li>Наказание</li></ul><div class="quote">При crash или технически проблем се върнете възможно най-бързо и уведомете Staff.</div></section>
+
+    <section class="rule" id="r9"><div class="rule-head"><div class="num">09</div><h2>👮 COP BAITING</h2></div><p>Забранено е умишлено провокиране на полицията само с цел да започне преследване или престрелка.</p><ul><li>Умишлено въртене около полицията</li><li>Безпричинно обиждане на служители</li><li>Стрелба до полиция само за внимание</li><li>Нарочно нарушаване на закона с цел chase</li></ul></section>
+
+    <section class="rule" id="r10"><div class="rule-head"><div class="num">10</div><h2>🚑 EMS BAITING</h2></div><p>Забранено е умишленото пречене или провокиране на EMS.</p><p>EMS не се нападат без изключително сериозна RP причина. Не пречете на медицински RP ситуации.</p></section>
+
+    <section class="rule" id="r11"><div class="rule-head"><div class="num">11</div><h2>🧍 VALUE OF LIFE</h2></div><p>Животът на персонажа ви има стойност.</p><ul><li>Не можете да влизате сами срещу голяма въоръжена група</li><li>Не можете да вадите оръжие срещу човек, който вече ви държи на мушка</li><li>Не можете да правите самоубийствени действия без RP причина</li></ul><div class="quote">Победата не е по-важна от живота на персонажа.</div></section>
+
+    <section class="rule" id="r12"><div class="rule-head"><div class="num">12</div><h2>💥 ПРЕСТРЕЛКИ</h2></div><p>Престрелката трябва да бъде <strong>последна опция</strong>, а не първа.</p><ul><li>Безпричинно откриване на огън</li><li>Third Party намеса без RP причина</li><li>Връщане след смърт</li><li>Стрелба по EMS без причина</li><li>Използване на exploits по време на бой</li></ul></section>
+
+    <section class="rule" id="r13"><div class="rule-head"><div class="num">13</div><h2>🏃 ROBBERY / KIDNAPPING</h2></div><p>При обири и отвличания трябва да има реална RP причина.</p><ul><li>Отвличане без RP цел</li><li>Безсмислено обиране на нови играчи</li><li>Постоянно обиране на един и същ човек</li><li>Принуждаване на играч да тегли всичките си пари</li><li>Прекомерно унижение без RP смисъл</li></ul></section>
+
+    <section class="rule" id="r14"><div class="rule-head"><div class="num">14</div><h2>🚓 POLICE ROLEPLAY</h2></div><p>При взаимодействие с полиция:</p><ul><li>Следвайте RP ситуацията</li><li>Не провокирайте без причина</li><li>Не бягайте при всяка минимална проверка</li><li>Не превръщайте всеки арест в престрелка</li></ul><div class="quote">При несъгласие с действията на полицията използвайте <strong>Ticket</strong>, а не прекъсвайте RP ситуацията.</div></section>
+
+    <section class="rule" id="r15"><div class="rule-head"><div class="num">15</div><h2>🚑 MEDICAL RP</h2></div><p>След тежко нараняване сте длъжни да го изиграете.</p><ul><li>Да ставате и да бягате след тежка катастрофа</li><li>Да игнорирате прострелни рани</li><li>Да се държите сякаш нищо не се е случило</li><li>Да прекъсвате медицинската ситуация без причина</li></ul></section>
+
+    <section class="rule" id="r16"><div class="rule-head"><div class="num">16</div><h2>🚗 DRIVING RP</h2></div><p>Шофирането трябва да бъде разумно спрямо ситуацията.</p><ul><li>Постоянно каране с максимална скорост без причина</li><li>Нереалистични скокове</li><li>Off-road с автомобили, които не са предназначени за това</li><li>Игнориране на тежки катастрофи</li><li>Използване на колата като таран без RP причина</li></ul></section>
+
+    <section class="rule" id="r17"><div class="rule-head"><div class="num">17</div><h2>🐛 BUG ABUSE / EXPLOITS</h2></div><p>Строго забранено е използването на:</p><ul><li>Bugs</li><li>Glitches</li><li>Exploits</li><li>Duplication методи</li><li>Animation exploits</li><li>Механики, които дават нечестно предимство</li></ul><div class="quote">⚠️ Открит бъг трябва да бъде докладван на Staff.</div></section>
+
+    <section class="rule" id="r18"><div class="rule-head"><div class="num">18</div><h2>💻 CHEATS</h2></div><p>Нулева толерантност към:</p><ul><li>Aim Assist / Aimbot</li><li>Wallhack</li><li>ESP</li><li>Triggerbot</li><li>Lua Executors</li><li>Mod Menus</li><li>Injectors</li><li>Всякакъв външен софтуер за предимство</li></ul><div class="quote">🚫 <strong>Cheating = Permanent Ban</strong></div></section>
+
+    <section class="rule" id="r19"><div class="rule-head"><div class="num">19</div><h2>🎥 STREAM SNIPING</h2></div><p>Забранено е гледането на stream с цел получаване на IC информация или откриване на позицията на играч.</p></section>
+
+    <section class="rule" id="r20"><div class="rule-head"><div class="num">20</div><h2>👥 THIRD PARTY</h2></div><p>Не можете да се намесвате в чужда RP ситуация без логична причина и реална връзка със ситуацията.</p></section>
+
+    <section class="rule" id="r21"><div class="rule-head"><div class="num">21</div><h2>🧍 CHARACTER RULES</h2></div><p>Вашият персонаж трябва да има:</p><ul><li>Реалистично име</li><li>Реалистична история</li><li>Последователно поведение</li><li>Нормално развитие</li></ul><p>Забраняват се troll персонажи и имена, създадени единствено за подигравка.</p></section>
+
+    <section class="rule" id="r22"><div class="rule-head"><div class="num">22</div><h2>🎙️ OOC</h2></div><p>OOC трябва да бъде използвано само когато е абсолютно необходимо.</p><div class="quote">❌ Не прекъсвайте RP ситуация с „Ще те репортна.“, „Ще викам админ.“, „Това е FailRP.“<br><br>Завършете ситуацията и след това използвайте Ticket.</div></section>
+
+    <section class="rule" id="r23"><div class="rule-head"><div class="num">23</div><h2>🛡️ STAFF</h2></div><p>Staff има право да прекъсне ситуация при сериозно нарушение.</p><ul><li>Запазете нормален тон</li><li>Не спорете агресивно</li><li>Не лъжете</li><li>Представете доказателствата си</li></ul><div class="quote">Ако не сте съгласни с решение → <strong>Ticket към Management.</strong></div></section>
+
+    <section class="rule" id="r24"><div class="rule-head"><div class="num">24</div><h2>📹 CLIPS / ДОКАЗАТЕЛСТВА</h2></div><p>Препоръчително е да записвате играта си.</p><p>При репорт Staff може да поиска:</p><ul><li>Clip</li><li>Screenshot</li><li>POV</li><li>Допълнителни доказателства</li></ul><div class="quote">❌ Манипулирането или фалшифицирането на доказателства води до сериозно наказание.</div></section>
+
+    <section class="rule" id="r25"><div class="rule-head"><div class="num">25</div><h2>⚖️ COMMON SENSE</h2></div><p>Не всяка възможна ситуация може да бъде описана в правилата.</p><p>Ако нещо очевидно:</p><ul><li>Разваля RP</li><li>Дава нечестно предимство</li><li>Умишлено вреди на друг играч</li><li>Заобикаля правилата</li></ul><div class="quote">Staff има право да го санкционира.</div></section>
+
+    <section class="rule penalty" id="penalties">
+      <div class="rule-head"><div class="num">⚠</div><h2>⚖️ НАКАЗАНИЯ</h2></div>
+      <p>В зависимост от нарушението:</p>
+      <div class="penalties"><div>⚠️<br><strong>Warning</strong></div><div>🕒<br><strong>Temporary Ban</strong></div><div>🔐<br><strong>Whitelist Removal</strong></div><div>🔨<br><strong>Permanent Ban</strong></div></div>
+      <div class="quote">При тежки нарушения Staff / Management има право да приложи директно по-сериозно наказание.</div>
+    </section>
+
+    <section class="rule penalty" id="final">
+      <div class="rule-head"><div class="num">👑</div><h2>👑 ФИНАЛНО ПРАВИЛО</h2></div>
+      <div class="quote">
+        <strong>Играйте за историята, а не само за победата.</strong><br><br>
+        <strong>Не всяка ситуация трябва да завършва със стрелба.</strong><br><br>
+        <strong>Уважавайте RP-то на останалите и те ще уважават вашето.</strong>
+      </div>
+      <p style="text-align:center;font-weight:900;letter-spacing:3px;color:#ff3a3a;margin-top:25px">🔥 КАЧЕСТВО • РЕАЛИЗЪМ • ROLEPLAY</p>
+    </section>
+
+    <footer>© GRAND CITY RP • Official Server Rules</footer>
+  </main>
+</div>
+
+<script>
+  function toggleMenu(){ document.getElementById('sidebar').classList.toggle('open'); }
+  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
+    document.getElementById('sidebar').classList.remove('open');
+  }));
+  const input=document.getElementById('search');
+  const rules=[...document.querySelectorAll('.rule')];
+  input.addEventListener('input',()=>{
+    const q=input.value.toLowerCase().trim();
+    rules.forEach(r=>r.classList.toggle('hidden',q && !r.innerText.toLowerCase().includes(q)));
+  });
+  const links=[...document.querySelectorAll('nav a')];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const link=document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if(link) link.classList.add('active');
+      }
+    });
+  },{rootMargin:'-20% 0px -65% 0px'});
+  rules.forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
